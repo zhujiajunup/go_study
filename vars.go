@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"os"
+)
 
 func main() {
 	const (
@@ -10,4 +15,9 @@ func main() {
 		l             // 3 << 3 = 24
 	)
 	fmt.Println(i, j, k, l)
+	var b bytes.Buffer
+	b.Write([]byte("Hello"))
+	fmt.Fprint(&b, " World!")
+	io.Copy(os.Stdout, &b)
+
 }
